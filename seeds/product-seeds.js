@@ -1,5 +1,6 @@
 const { Product } = require('../models');
 
+/// Product see JSON /// 
 const productData = [
   {
     product_name: 'Plain T-Shirt',
