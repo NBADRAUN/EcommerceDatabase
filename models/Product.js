@@ -18,15 +18,20 @@ Product.init(
       type: DataTypes.STRING, 
       allowNull: false 
     }, 
-    product_price: {
+    price: {
       type: DataTypes.DECIMAL,
       allowNull: false, 
-      defaultValue: 0
+      validate: {
+        isDecimal: true
+      }
     }, 
-    product_stock: {
+    stock: {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
-      defaultValue: 0 
+      allowNull: false,
+      defaultValue: 0, 
+      validate: {
+        isNumeric: true
+      } 
     }, 
     category_id: {
       type: DataTypes.INTEGER,
