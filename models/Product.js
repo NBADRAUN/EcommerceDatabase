@@ -2,10 +2,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-// model //
+// extends this model from the sequelize model structure called "Model"// 
 class Product extends Model {}
 
-// set up fields and rules for Product model
+// initializes and sets up the model data fields /// 
 Product.init(
   {
     product_id: {
@@ -52,4 +52,5 @@ Product.init(
   }
 );
 
+// exports the model to be used elsewhere // 
 module.exports = Product;

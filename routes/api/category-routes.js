@@ -3,7 +3,6 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 
-
 ///////////////// GET ROUTES ///////////////////
 
 router.get('/', async (req, res) => {
@@ -71,9 +70,7 @@ router.put('/:id', (req, res) => {
 
 ///////////// Delete Routes //////////////////
 
-
 router.delete('/:id', (req, res) => {
-  // Looks for the books based on isbn given in the request parameters and deletes the instance from the database
   Category.destroy({
     where: {
       category_id: req.params.id,
@@ -86,32 +83,5 @@ router.delete('/:id', (req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.put('/:id', (req, res) => {
-//   // update a category by its `id` value
-// });
-
-// router.delete('/:id', (req, res) => {
-//   // delete a category by its `id` value
-// });
 
 module.exports = router;

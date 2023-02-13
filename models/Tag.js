@@ -2,8 +2,11 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
+
+// extends this model from the sequelize model structure called "Model"// 
 class Tag extends Model {}
 
+// initializes and sets up the model data fields /// 
 Tag.init(
   {
     tag_id: {
@@ -27,4 +30,5 @@ Tag.init(
   }
 );
 
+// exports the model to be used elsewhere // 
 module.exports = Tag;

@@ -2,8 +2,10 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
+// extends this model from the sequelize model structure called "Model"// 
 class Category extends Model {}
 
+// initializes and sets up the model data fields /// 
 Category.init(
   {
     category_id: {
@@ -24,4 +26,5 @@ Category.init(
   }
 );
 
+// exports the model to be used elsewhere // 
 module.exports = Category;
