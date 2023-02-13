@@ -76,13 +76,13 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // Looks for the books based on isbn given in the request parameters and deletes the instance from the database
-  Product.destroy({
+  Tag.destroy({
     where: {
-      product_id: req.params.id,
+      tag_id: req.params.id,
     },
   })
-    .then((deletedProduct) => {
-      res.json(deletedProduct);
+    .then((deletedTag) => {
+      res.json(deletedTag);
     })
     .catch((err) => res.json(err));
 });
