@@ -10,8 +10,7 @@ router.get('/', async (req, res) => {
     // find all categories
   // be sure to include its associated Products
     const categoryData = await Category.findAll({
-      include: [{ model: Product,attributes: {exclude: ['category_id']}}],
-      attributes: {exclude: ['category_id']} 
+      include: [{ model: Product}]
     });
     res.status(200).json(categoryData);
   });
@@ -20,7 +19,7 @@ router.get('/', async (req, res) => {
     // find one category by its `id` value
     // be sure to include its associated Products
    const categoryidData = await Category.findByPk(req.params.id,
-        {include: [{model:Product, attributes: {exclude: ['category_id']}}],
+        {include: [{model:Product}]
     });
     res.status(200).json(categoryidData);
    
@@ -29,16 +28,90 @@ router.get('/', async (req, res) => {
   
 /////////////////// POST ROUTES ///////////////////
 
+  // create a new category // 
 router.post('/', (req, res) => {
-  // create a new category
-});
+  Category.create(
+    {category_name: req.body.category_name})
+  .then((newCategory) => {
+    res.json(newCategory); 
+  })
+  .catch((err) => {
+    res.json(err); 
+  }); 
+}); 
+
+//////////////////// Update Routes //////////////////
 
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  Category.update(
+    {
+      category_id: req.body.category_id, 
+      category_name: req.body.category_name
+    },
+    {
+      where: {
+        category_id: req.params.id,
+      },
+    }
+  )
+    .then(() => {
+      // sends the updated category json response 
+      res.json(
+        {
+          category_id: req.body.category_id, 
+          category_name: req.body.category_name
+        },
+
+      );
+    })
+    .catch((err) => res.json(err));
 });
 
+
+
+///////////// Delete Routes //////////////////
+
+
 router.delete('/:id', (req, res) => {
-  // delete a category by its `id` value
+  // Looks for the books based on isbn given in the request parameters and deletes the instance from the database
+  Category.destroy({
+    where: {
+      category_id: req.params.id,
+    },
+  })
+    .then((deletedCategory) => {
+      res.json(deletedCategory);
+    })
+    .catch((err) => res.json(err));
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.put('/:id', (req, res) => {
+//   // update a category by its `id` value
+// });
+
+// router.delete('/:id', (req, res) => {
+//   // delete a category by its `id` value
+// });
 
 module.exports = router;
